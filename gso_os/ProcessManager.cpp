@@ -47,13 +47,16 @@ void ProcessManager::fecharProcesso(int pid) {
 void ProcessManager::escalonar() {
     if (!filaNovos.empty()) {
         Process proximoProcesso = filaNovos.front();
-        if (gerenciadorRecursos.temRecursos(proximoProcesso.recursosNecessarios)) {
 
+        if (gerenciadorRecursos.temRecursos(proximoProcesso.recursosNecessarios)) {
             gerenciadorRecursos.alocarRecursos(proximoProcesso.recursosNecessarios);
 
             executando.push_back(proximoProcesso);
+
             filaNovos.pop();
+
             proximoProcesso.state = ProcessState::RUNNING;
+
             std::cout << "Executando aplicativo \x1B[33m" << aplicativos[proximoProcesso.id] << "\033[0m.\n";
         } else {
             std::cout << "Recursos não disponíveis para executar o aplicativo \x1B[33m" << aplicativos[proximoProcesso.id] << "\033[0m.\n";

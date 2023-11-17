@@ -23,7 +23,7 @@
 int main() {
     setlocale(LC_ALL, "");
 
-    srand(static_cast<unsigned int>(time(nullptr))); // Inicialização da semente para números aleatórios
+    srand(static_cast<unsigned int>(time(nullptr)));
 
     const int resourcesNumber = 3;
 
