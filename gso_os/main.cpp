@@ -31,27 +31,13 @@ int main() {
 
     std::string input;
 
-    Terminal::loadingMessage("Iniciando o Sistema Operacional");
-
-    Terminal::loadingMessage("Carregando Serviços de Rede");
-
-    Terminal::loadingMessage("Inicializando Serviços de Hardware");
-
-    Terminal::loadingMessage("Configurando Ambiente Terminal");
-
-    Terminal::loadingMessage("Carregando Drivers de Dispositivos");
-
-    Terminal::loadingMessage("Verificando Integridade do Sistema");
-
-    Terminal::loadingMessage("Sistema Operacional inicializado com Sucesso!");
-
-    system("cls");
-
-    Terminal::welcomeMessage();
+    Terminal::loadSystem();
 
     system("timeout 1 > NUL");
 
     std::cout << "Digite um comando ('help' para exibir a lista de comandos):\n\n";
+
+    std::regex pattern("\\d+");
 
     while (true)
     {
@@ -83,12 +69,22 @@ int main() {
         }
         else if (command == "running")
         {
-
+            gerenciador.execucacao();
         }
-        else if (command == "kill")
+        else if (command == "kill" and input.substr(0, 5) == "kill ")
         {
-            gerenciador.fecharProcesso();
-            gerenciador.escalonar();
+            if (!input.substr(5).empty() and std::regex_match(input.substr(5), pattern)) {
+                int pid = std::stoi(input.substr(5));
+
+                if (gerenciador.existeExecucao(pid)) {
+                    gerenciador.fecharProcesso(pid);
+                    gerenciador.escalonar();
+                } else {
+                    std::cout << "Processo não encontrado!\n";
+                }
+            } else {
+                std::cout << "É necessário informar um PID válido! \n";
+            }
         }
         else if (command == "list")
         {
@@ -102,8 +98,6 @@ int main() {
         }
         else if (command == "run" and input.substr(0, 4) == "run ")
         {
-            std::regex pattern("\\d+");
-
             if (!input.substr(4).empty() and std::regex_match(input.substr(4), pattern)) {
 
                 int id = std::stoi(input.substr(4));

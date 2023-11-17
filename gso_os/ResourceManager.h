@@ -15,4 +15,6 @@ public:
     bool alocarRecursos(const std::vector<ResourceType>& recursos);
 
     void liberarRecursos(const std::vector<ResourceType>& recursos);
+
+    bool temRecursos(const std::vector<ResourceType>& recursos);
 };

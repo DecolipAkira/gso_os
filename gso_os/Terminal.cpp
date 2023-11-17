@@ -19,6 +19,26 @@ void Terminal::loadingMessage(std::string message) {
     std::cout << "\n";
 }
 
+void Terminal::loadSystem() {
+    loadingMessage("Iniciando o Sistema Operacional");
+
+    loadingMessage("Carregando Serviços de Rede");
+
+    loadingMessage("Inicializando Serviços de Hardware");
+
+    loadingMessage("Configurando Ambiente Terminal");
+
+    loadingMessage("Carregando Drivers de Dispositivos");
+
+    loadingMessage("Verificando Integridade do Sistema");
+
+    loadingMessage("Sistema Operacional inicializado com Sucesso");
+
+    system("cls");
+
+    welcomeMessage();
+}
+
 void Terminal::welcomeMessage() {
     std::cout << "\n";
     std::cout << "   _____                  _       _\n";

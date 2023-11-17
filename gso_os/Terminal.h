@@ -9,6 +9,8 @@ class Terminal {
 public:
 	static void loadingMessage(std::string message);
 
+	static void loadSystem();
+
 	static void welcomeMessage();
 };
 
